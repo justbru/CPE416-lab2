@@ -11,7 +11,7 @@ void motor(uint8_t num, int8_t speed)
 
 int main(void)
 {
-    u08 threshold = 150;
+    u08 threshold = 160;
     u08 leftLight = threshold;
     u08 rightLight = threshold;
     u08 type = 1;
@@ -50,16 +50,16 @@ int main(void)
         }
 
         // calculate left speed
-        leftLight = analog(1);
+        leftLight = analog(0);
         if (leftLight > threshold)
-            motor(firstMotor, ((100 - (100 - (255 - leftLight))) * -1));
+            motor(firstMotor, ((100 - (100 - (255 - leftLight))) * 1));
         else
             motor(firstMotor, 0);
 
         // calculate right speed
-        rightLight = analog(0);
+        rightLight = analog(1);
         if (rightLight > threshold)
-            motor(secondMotor, ((100 - (100 - (255 - rightLight))) * 1));
+            motor(secondMotor, ((100 - (100 - (255 - rightLight))) * -1));
         else
             motor(secondMotor, 0);
     }
