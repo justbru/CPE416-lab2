@@ -15,6 +15,8 @@ int main(void)
     u08 leftLight = threshold;
     u08 rightLight = threshold;
     u08 type = 1;
+    u08 firstMotor = 1;
+    u08 secondMotor = 0;
 
     init();
     set_servo(0, 127);
@@ -32,12 +34,16 @@ int main(void)
             if (type == 1)
             {
                 type = -1;
+                firstMotor = 0;
+                secondMotor = 1;
                 clear_screen();
                 print_string("3B");
             }
             else
             {
                 type = 1;
+                firstMotor = 1;
+                secondMotor = 0;
                 clear_screen();
                 print_string("3A");
             }
@@ -46,16 +52,16 @@ int main(void)
         // calculate left speed
         leftLight = analog(1);
         if (leftLight > threshold)
-            motor(0, (leftLight - 255) * type);
+            motor(firstMotor, ((100 - (100 - (255 - leftLight))) * -1));
         else
-            motor(0, 0);
+            motor(firstMotor, 0);
 
         // calculate right speed
         rightLight = analog(0);
         if (rightLight > threshold)
-            motor(1, (rightLight - 255) * -type);
+            motor(secondMotor, ((100 - (100 - (255 - rightLight))) * 1));
         else
-            motor(1, 0);
+            motor(secondMotor, 0);
     }
 
     return 0;
