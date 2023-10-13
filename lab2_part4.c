@@ -54,10 +54,7 @@ int main(void)
             motor(0, (100 - (calculateErr(rightSensor))) * 0.3);
             motor(1, (100 - (calculateErr(leftSensor))) * -0.3);
         }
-
-        print_num(leftSensor);
-        
-        clear_screen();
     }
+    
     return 0;
 }
