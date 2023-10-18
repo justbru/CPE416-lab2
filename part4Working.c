@@ -57,10 +57,6 @@ int main(void)
         if ((leftSensor < 20))
         {
             u08 speed = maxSpeed - ((leftSensor - 10) * 3);
-            if (speed < 5)
-                speed = 5;
-            if (speed > 60)
-                speed = 60;
             motor(0, speed);
         }
         else
@@ -75,8 +71,6 @@ int main(void)
             u08 speed = maxSpeed - ((rightSensor - 10) * 3);
             if (speed < 5)
                 speed = 5;
-            if (speed > 60)
-                speed = 60;
             motor(1, speed * -1);
         }
         else
@@ -102,7 +96,7 @@ int main(void)
                 timeSinceTurning = 0;
             }
         }
-        else if (leftSensor > 195)
+        else if (leftSensor > 200)
         {
             if (timeSinceTurning > 1000)
             {
